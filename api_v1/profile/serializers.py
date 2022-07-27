@@ -15,7 +15,6 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     def get_photos(self, obj) -> list[str]:
         request = self.context.get('request')
-        print('>>>>', dir(self))
         return map(
             lambda photo: request.build_absolute_uri(photo.image.url),
             Photo.objects.filter(profile=obj)
